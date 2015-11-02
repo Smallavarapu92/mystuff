@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<head>
+<title> Angular JS | Expressions </title>
+</head>
+<body>
+	<div ng-init="myFavouriteLan=[{name:'PHP', extension:'.php'},{name: 'JavaScript', extension:'.js'},{name: 'ruby', extension:'.rb'},{name: 'c++', extension:'.cpp'}]">
+    <p ng-repeat="language in myFavouriteLan">
+	Name:{{language.name}}<br>
+	Extension:{{language.extension}}<br>
+	</p>
+</body>
+</html>

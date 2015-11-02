@@ -1,0 +1,40 @@
+</html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular-resource.min.js"></script>
+	<script src="stageController.js"></script>
+	<link rel="stylesheet" type="text/css" href="login.css">
+</head>
+
+<div class="" ng-app="myApp" ng-controller="AppCtrl">
+    <form name="passwordForm" >
+    <div class="control-group">
+	    <label class="control-label">Password</label>
+        <div class="controls">
+            <input 
+			type="password" 
+			name="password" 
+			ng-pattern="/((?=.*[a-z])(?=.*\d)(?=.*[@#$%]).{8,13})$/"
+			ng-minlength="8" 
+			ng-maxlength="13"   
+			ng-model="user.password"
+			password-strength="user.password" 
+			required/>
+			<p ng-if="passwordForm.password.$error.pattern">Password must contain a number</p>
+			<span ng-if="passwordForm.$valid"> good job</span> 
+				<div ng-messages="passwordForm.password.$error" ng-if="passwordForm.password.$dirty">
+					<p ng-message="minlength">Password is less than 8</p>
+					<p ng-message="maxlength">Password is okay.</p>
+					<p ng-message="required">Password is required.</p>
+			<span class="help-inline" 
+			data-ng-show='passwordForm.password.$valid && passwordForm.password.$dirty' 
+			data-ng-class="strength">This password is {{strength}} ! </span>
+			<span ng-if="strength=='weak'"> The password is too short</span>
+			</div>
+        </div>        
+    </div>
+    </form>           
+    <pre>strength = {{strength}}</pre>    
+    <pre>password = {{user.password}}</pre>
+</div>

@@ -1,0 +1,45 @@
+</html>
+
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular-resource.min.js"></script>
+	<script src="Validation.js"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<div class="" ng-app="myApp" ng-controller="AppCtrl">
+    <form name="passwordForm" >
+    <div class="control-group">
+	    <label class="control-label">Password</label>
+        <div class="login">
+<!-- The regular expression allows one or more lower case alphabets, one or more upper case alphabets-->
+<!-- followed by one or more digits and zero or more special characters -->
+					  <input
+							type="password"
+							name="password"
+							ng-pattern="/((?=.*[a-z])+(?=.*[A-Z])*(?=.*\d)+(?=.*[!@#$%^&*()_])*.{8,64})$/"
+							ng-minlength="8"
+							ng-maxlength="64"
+							ng-model="user.password"
+							password-strength="user.password"
+							required/> <br>
+				</div>
+<!-- if the password doesnt meet the requirements the following error would be displayed -->
+				<p ng-if="passwordForm.password.$error.pattern"> Password must contain <br>
+					zero or more upper case letters : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z or <br>
+					one or more lower case letters : a b c d e f g h i j k l m n o p q r s t u v w x y z <br>
+					atleast one number : 0 1 2 3 4 5 6 7 8 9 <br>
+					and zero or more special characters: "! @ # $ % ^ & * ( ) _" </p>
+					<!-- <p ng-if="passwordForm.password.$error.pattern"> Password must be minimum 8 characters long containing atleast one letter and one digit -->
+				<div ng-messages="passwordForm.password.$error" ng-if="passwordForm.password.$dirty">
+					<span ng-message="minlength"> Password too short <br> Must be atleast 8 characters long </span>
+					<span ng-message="required">Password cant be empty.</span>
+					<span ng-message="maxlength">Password cannot be longer than 64 characters</span>
+				</div>
+        <span ng-if="passwordForm.$valid" > Password Accepted</span>
+    </div>
+    </form>
+   <!-- <pre>Password is {{strength}}</pre>     -->
+   <pre>password = {{user.password}}</pre>
+</div>

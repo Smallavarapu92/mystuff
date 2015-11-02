@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title></title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="\tinymce\tinymce.min.js"></script>
+	<script type="text/javascript">
+	tinymce.init({
+	selector: "textarea",
+    theme: "modern",
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools",
+		"save"
+    ],
+	toolbar1: "save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    toolbar2: "print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+	save_onsavecallback:true,
+	save_onsavecallback: function () { 
+						alert(tinyMCE.get('sample').getContent());
+						console.log( "ready!" );
+
+						}
+						})
+	
+	</script>
+	<form method="post" id="thisisaname">
+	    <textarea name="content" id="sample" style="width:100%"></textarea>
+		<input type="hidden" name="command" value="register">
+	</form>
+</head>
+<body>
+
+</div>
+</body>
+</html>
+
+
+<!-- console.log('Saved');
+						console.log( $("#sample").val() );
+						console.log('Text content is');
+						$.post( "backend.php",$("#sample").val())
+						.done(function( data ) {
+						console.log( "Data Loaded:" + data );
+						});
+						console.log("this is result");						
+						$.get( "backend.php?command=getAll", function(data) {
+						console.log(data);
+						data = eval('(' + data + ')');
+						for(var i=0;i<data.length;i++){
+						$('#thisisaname').append('<option value="">'+data[i]+'</option>');
+						}
+						}); -->
